@@ -11,14 +11,11 @@ app.get('/',function (req,res) {
 
 io.on('connection',function(socket){
     console.log('user connected via soket.io');
-
-
     socket.on('message', function(message){
         console.log('message received'+' '+ message.text);
         //socket.broadcast.emit('message',message);
         io.emit('message',message);
     });
-
         socket.emit('message',{
         text:'message sent welcome to chat app'
     });
